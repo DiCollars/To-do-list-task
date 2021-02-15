@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
-import CategoryReducer from '../reducers/categoryReducer';
-import TaskReducer from '../reducers/taskReducer';
+import CategoryReducer from './categoryReducer';
+import TaskReducer from './taskReducer';
 
 const allReducers = combineReducers({
     Categories: CategoryReducer,

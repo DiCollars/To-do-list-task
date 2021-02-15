@@ -1,4 +1,4 @@
-export const taskTable = [
+export const taskTable: Array<string> = [
         'Buy milk',
         'Clean room',
         'Cook dinner',

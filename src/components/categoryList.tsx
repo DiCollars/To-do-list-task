@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deleteCategory } from '../actions/categoryAction'
 import Modal from '../modalWindow/confirmModal';
 
-function CategoryList() {
-    const allCategories = useSelector(state => state.Categories);
+const CategoryList: React.FC = () => {
+    const allCategories = useSelector((state: any) => state.Categories);
     const dispatch = useDispatch();
 
     const [showModal, setShowModal] = useState(false);
@@ -14,16 +14,21 @@ function CategoryList() {
         <div>
              {showModal && 
             <Modal 
-                text={'Do you wanna delete this category?'}
+                text={'Удаление категории'}
                 onConfirmButtonClick={
                 () => {
                     dispatch(deleteCategory(currentCategory)); setShowModal(false);
                 }} 
                 onCloseButtonClick={
                     () => setShowModal(false)
-                }/>}
+                }
+                callBack={()=>{}}
+                onCloseButtonStyle={'modal-confirm-no'}
+                onOpenButtonStyle={'modal-confirm-yes'}
+                textStyle={'modal-confirm-text'}
+                />}
             <ol>
-                {allCategories.map(category => (
+                {allCategories.map((category: any) => (
                     <li key={category}>{category} <button onClick={() => {setShowModal(true); setcurrentCategory(category);}}>x</button></li>
                 ))}
             </ol>

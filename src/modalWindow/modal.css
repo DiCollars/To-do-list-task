@@ -12,8 +12,71 @@
   }
   
   .modal {
-    background-color: #ffffff;
-    border: 1px solid hsl(0, 0%, 0%);
+    background: #DBE2EF;
+    box-shadow: 0px 8px 24px rgba(0, 0, 0, 0.5);
     border-radius: 2px;
-    padding: 102px 106px;
+    padding: 50px 50px;
+  }
+
+  /* button */
+  .modal-confirm-yes {
+    background: #3F72AF;
+    border: 2px solid #3F72AF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    top: 0%;
+    bottom: 0%;
+    font-family: Roboto;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    font-size: 20px;
+    line-height: 30px;
+  }
+
+  .modal-confirm-no {
+    border: 2px solid #3F72AF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    color: #3F72AF;
+  }
+
+  .modal-mute-create {
+    background: #3F72AF;
+    border: 2px solid #3F72AF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: #FFFFFF;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: Roboto;
+  }
+
+  .modal-mute-close {
+    border: 2px solid #3F72AF;
+    box-sizing: border-box;
+    border-radius: 4px;
+    color: #3F72AF;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 20px;
+    line-height: 30px;
+    font-family: Roboto;
+  }
+
+  /* text */
+  .modal-confirm-text {
+    font-family: Roboto;
+    font-weight: 500;
+    font-size: 40px;
+    line-height: 56px;
+    color: #3F72AF;
+    align-items: center;
   }
