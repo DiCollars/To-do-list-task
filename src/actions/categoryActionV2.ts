@@ -4,9 +4,9 @@ export enum CategoryActionType {
     DELETE = 'DELETE'
 }
 
-export const deleteCategory = (text: string): Action<CategoryActionType, string> => {
+export const deleteCategory = (categoryId: number): Action<CategoryActionType, any> => {
     return {
         type: CategoryActionType.DELETE,
-        payload: text
+        payload: categoryId
     };
 }

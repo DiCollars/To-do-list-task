@@ -19,10 +19,8 @@ export default function Header() {
           <h3 className={'text-white'}>ToDo List</h3>
         </div>
         <div>
-          <NavLink onClick={() => setMode('categories')} to='/categories'> [categories] </NavLink>
-        </div>
-        <div>
-          <NavLink onClick={() => setMode('tasks')} to='/tasks'> [tasks] </NavLink>
+          <NavLink onClick={() => setMode('categories')} to='/categories'> Категории </NavLink>
+          | <NavLink onClick={() => setMode('tasks')} to='/tasks'> Задания </NavLink>
         </div>
         <div>
           {mode === 'categories' && <button onClick={() => setShowModalCategory(true)}>Add categories!</button>}
