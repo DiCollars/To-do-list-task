@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import DB, { addItem, getItems, updateItem, deleteItem } from '../database/db';
+import DB, { addItem, getItems, updateItem, deleteItem, getCategories } from '../database/db';
 import './component.css';
 import { FaFolder } from 'react-icons/fa';
 import { MdModeEdit, MdDelete } from 'react-icons/md';
@@ -7,6 +7,19 @@ import { useDispatch } from 'react-redux';
 import Modal from '../modalWindow/confirmModal';
 import '../modalWindow/modal.css';
 import { deleteTask } from '../actions/taskActionV2';
+
+// function getNameById(array: any, id: any) {
+//     console.log(id);
+//     if(array !== null)
+//     {
+//         var found = array.filter(function (item: any) { return item.id == id; });
+//         console.log(id);
+//         return found[0].name;
+//     }
+//     else {
+//         return '';
+//     }
+// }
 
 export default function TaskList() {
     const dispatch = useDispatch();
@@ -16,6 +29,7 @@ export default function TaskList() {
 
     const db = DB();
     const [list, setList]: any = useState(null);
+
     let items = getItems(db);
 
     useEffect(() => {
@@ -26,25 +40,26 @@ export default function TaskList() {
     return (
         <div key='TASK_LIST'>
             {showModal &&
-            <Modal
-                text={'Удаление задачи'}
-                onConfirmButtonClick={() => {
-                    dispatch(deleteTask(currentTask));
-                    setShowModal(false);
-                }}
-                onCloseButtonClick={() => setShowModal(false)}
-                callBack={() => { }}
-                onCloseButtonStyle={'modal-confirm-no'}
-                onOpenButtonStyle={'modal-confirm-yes'}
-                textStyle={'modal-confirm-text'}
-            />}
+                <Modal
+                    text={'Удаление задачи'}
+                    onConfirmButtonClick={() => {
+                        dispatch(deleteTask(currentTask));
+                        setShowModal(false);
+                    }}
+                    onCloseButtonClick={() => setShowModal(false)}
+                    callBack={() => { }}
+                    onCloseButtonStyle={'modal-confirm-no'}
+                    onOpenButtonStyle={'modal-confirm-yes'}
+                    textStyle={'modal-confirm-text'}
+                />}
             {
                 list && list.map((task: any) =>
                     <div>
                         <div>
                             {task.name}
+                            
+                            {task.categoryId && <FaFolder className='logo-img-path' />} 
                             {task.categoryId}
-                            <FaFolder className='logo-img-path' />
                             <MdModeEdit className='logo-img-path' />
                             <MdDelete className='logo-img-path' onClick={() => { setShowModal(true); setCurrentTask(task.id); }} />
                         </div>

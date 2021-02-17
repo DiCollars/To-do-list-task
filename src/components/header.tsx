@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 import Modal from '../modalWindow/muteModal';
-import '../components/component.css'
+import '../components/component.css';
+import AddCategoryModal from '../modalWindow/cuCategoryModal';
+import AddTaskModal from '../modalWindow/cuTaskModal';
+import { addCategory } from '../actions/categoryActionV2';
+import { addTask } from '../actions/taskActionV2';
 
 export default function Header() {
   const [showModalCategory, setShowModalCategory] = useState(false);
@@ -11,6 +16,8 @@ export default function Header() {
     const arTmp = window.location.pathname.split("/").filter(e => e);
     return arTmp.length ? arTmp[0] : null;
   })());
+
+  const dispatch = useDispatch();
 
   return (
     <div>
@@ -23,30 +30,30 @@ export default function Header() {
           | <NavLink onClick={() => setMode('tasks')} to='/tasks'> Задания </NavLink>
         </div>
         <div>
-          {mode === 'categories' && <button onClick={() => setShowModalCategory(true)}>Add categories!</button>}
-          {mode === 'tasks' && <button onClick={() => setShowModalTask(true)}>Add tasks!</button>}
+          {mode === 'categories' && <button onClick={() => setShowModalCategory(true)}>Добавить категорию</button>}
+          {mode === 'tasks' && <button onClick={() => setShowModalTask(true)}>Добавить задачу</button>}
         </div>
       </div>
       {showModalCategory &&
-        <Modal text={'Создание категории'}
+        <AddCategoryModal
+          handleSubmit={(values: any) => {dispatch(addCategory({name: values.name, description: values.description}))}}
           onCloseButtonClick={() => setShowModalCategory(false)}
-          onConfirmButtonClick={() => <div>1</div>}
-          callBack={() => { }}
-          confirmText={'Создать'}
-          onCloseButtonStyle={'modal-mute-close'}
-          onOpenButtonStyle={'modal-mute-create'}
-          textStyle={'modal-confirm-text'}
+          onConfirmButtonClick={() => { }}
+          headText={'Создание категории'}
+          submitButtonText={'Создать'}
+          placeholderDescription={''}
+          placeholderName={''}
         />}
 
       {showModalTask &&
-        <Modal text={'Удаление категории'}
-          onCloseButtonClick={() => setShowModalTask(false)}
-          onConfirmButtonClick={() => <div>1</div>}
-          callBack={() => { }}
-          confirmText={'Создать'}
-          onCloseButtonStyle={'modal-mute-close'}
-          onOpenButtonStyle={'modal-mute-create'}
-          textStyle={'modal-confirm-text'}
+        <AddTaskModal 
+        handleSubmit={(values: any) => {dispatch(addTask({name: values.name, description: values.description, categoryId: values.id}))}}
+        onCloseButtonClick={() => setShowModalTask(false)}
+        onConfirmButtonClick={() => { }}
+        headText={'Создание задания'}
+        submitButtonText={'Создать'}
+        placeholderDescription={''}
+        placeholderName={''}
         />}
 
     </div>

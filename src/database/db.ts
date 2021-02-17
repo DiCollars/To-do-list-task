@@ -1,7 +1,7 @@
 import Dexie from 'dexie';
 
 //to use
-//import DB, { addCategory, addItem, getItems, getCategories, updateItem,  updateCategory, deleteCategory, deleteItem} from '../database/dbtest';
+//import DB, { addCategory, addItem, getItems, getCategories, updateItem,  updateCategory, deleteCategory, deleteItem} from '../database/db';
 
 //let db = DB();
 
