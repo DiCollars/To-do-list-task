@@ -1,18 +1,9 @@
 import React from 'react';
 import '../modalWindow/modal.css';
 import { Formik, Field, Form } from "formik";
+import { CUCategoryModalProps } from '../actions/interfaces';
 
-interface Props {
-    onCloseButtonClick: any;
-    onConfirmButtonClick: any;
-    headText: string;
-    submitButtonText: string;
-    handleSubmit: any,
-    placeholderName: string,
-    placeholderDescription: string
-}
-
-function CUCategoryModal(props: Props) {
+function CUCategoryModal(props: CUCategoryModalProps) {
     return (
         <div className='modal-overlay'>
             <div className='modal'>

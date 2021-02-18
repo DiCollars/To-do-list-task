@@ -2,27 +2,16 @@ import React, { useState, useEffect } from 'react';
 import '../modalWindow/modal.css';
 import { Formik, Field, Form } from "formik";
 import DB, { getCategories } from '../database/db';
+import { CUTaskModalProps, Category } from '../actions/interfaces';
 
-interface Props {
-    onCloseButtonClick: any;
-    onConfirmButtonClick: any;
-    headText: string;
-    submitButtonText: string;
-    handleSubmit: any,
-    placeholderName: string,
-    placeholderDescription: string
-}
-
-function CUTaskModal(props: Props) {
+function CUTaskModal(props: CUTaskModalProps) {
     const db = DB();
     let items = getCategories(db);
-    const [list, setList]: any = useState(null);
+    const [list, setList] = useState<Array<Category>>([]);
 
     useEffect(() => {
         items.then(result => { setList(result) });
     }, []);
-
-    console.log(list);
 
     return (
         <div className='modal-overlay'>
@@ -37,10 +26,10 @@ function CUTaskModal(props: Props) {
                     <Form>
                         <div>
                             <Field name='name' type='text' placeholder='Введите имя задания' />
-                            <Field name="id" as="select">
-                                <option value='null' >Выберите категорию</option>
-                                {list && list.map((category: any) => 
-                                <option value={category.id} >{category.name}</option>
+                            <Field name="categoryId" as="select">
+                                <option value='0' >Выберите категорию</option>
+                                {list?.map((category: Category) => 
+                                <option key={category.id} value={category.id} >{category.name}</option>
                                 )}
                             </Field>
                         </div>

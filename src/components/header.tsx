@@ -1,18 +1,19 @@
 import React, { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import Modal from '../modalWindow/muteModal';
+//import Modal from '../modalWindow/muteModal';
 import '../components/component.css';
 import AddCategoryModal from '../modalWindow/cuCategoryModal';
 import AddTaskModal from '../modalWindow/cuTaskModal';
 import { addCategory } from '../actions/categoryActionV2';
 import { addTask } from '../actions/taskActionV2';
+import { Task, Category } from '../actions/interfaces';
 
 export default function Header() {
-  const [showModalCategory, setShowModalCategory] = useState(false);
-  const [showModalTask, setShowModalTask] = useState(false);
+  const [showModalCategory, setShowModalCategory] = useState<boolean>(false);
+  const [showModalTask, setShowModalTask] = useState<boolean>(false);
 
-  const [mode, setMode] = useState((() => {
+  const [mode, setMode] = useState<string|null>((() => {
     const arTmp = window.location.pathname.split("/").filter(e => e);
     return arTmp.length ? arTmp[0] : null;
   })());
@@ -36,7 +37,7 @@ export default function Header() {
       </div>
       {showModalCategory &&
         <AddCategoryModal
-          handleSubmit={(values: any) => {dispatch(addCategory({name: values.name, description: values.description}))}}
+          handleSubmit={(category: Category) => {dispatch(addCategory(category))}}
           onCloseButtonClick={() => setShowModalCategory(false)}
           onConfirmButtonClick={() => { }}
           headText={'Создание категории'}
@@ -47,7 +48,7 @@ export default function Header() {
 
       {showModalTask &&
         <AddTaskModal 
-        handleSubmit={(values: any) => {dispatch(addTask({name: values.name, description: values.description, categoryId: values.id}))}}
+        handleSubmit={(task: Task) => { dispatch(addTask(task))}}
         onCloseButtonClick={() => setShowModalTask(false)}
         onConfirmButtonClick={() => { }}
         headText={'Создание задания'}

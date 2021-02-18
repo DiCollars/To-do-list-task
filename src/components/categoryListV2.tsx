@@ -7,27 +7,21 @@ import ConfirmModal from '../modalWindow/confirmModal';
 import UpdateModal from '../modalWindow/cuCategoryModal';
 import '../modalWindow/modal.css';
 import { deleteCategory, updateCategory } from '../actions/categoryActionV2';
+import { Category } from '../actions/interfaces';
 
 export default function CategoryListV2() {
     const dispatch = useDispatch();
 
-    const [showDeleteModal, setShowDeleteModal] = useState(false);
-    const [showUpdateModal, setShowUpdateModal] = useState(false);
-    const [currentCategoryId, setCurrentCategoryId] = useState(0);
-    const [currentCategory, setCurrentCategory] = useState({name: '', description: '', id: 0});
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+    const [showUpdateModal, setShowUpdateModal] = useState<boolean>(false);
+    const [currentCategoryId, setCurrentCategoryId] = useState<number|undefined>(0);
+    const [currentCategory, setCurrentCategory] = useState<Category>({name: '', description: '', id: 0});
 
-    const db = DB();
-    const [categoryList, setcategoryList]: any = useState(null);
-    let items = getCategories(db);
-
-    useEffect(() => {
-        items = getCategories(db);
-        items.then(result => { setcategoryList(result) });
-    }, [categoryList]);
+    const categoryList: Array<Category> = []; // Исправить! Тут нужно из юзселектора получать стейт.категории.
 
     return (
         <div key='CATEGORY_LIST'>
-            {showDeleteModal &&
+            {/* {showDeleteModal &&
                 <ConfirmModal
                     text={'Удаление категории'}
                     onConfirmButtonClick={() => {
@@ -52,10 +46,10 @@ export default function CategoryListV2() {
                 onConfirmButtonClick={() => { }}
                 headText={'Редактирование категории'}
                 submitButtonText={'Сохранить'}
-            />}
+            />} */}
 
             {
-                categoryList && categoryList.map((category: any) =>
+                categoryList.map((category: Category) =>
                     <div>
                         <div>
                             {category.name}

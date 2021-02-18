@@ -1,4 +1,4 @@
-import { Action } from './interfaces'
+import { Action, Category } from './interfaces';
 
 export enum CategoryActionType {
     DELETE_CATEGORY = 'DELETE_CATEGORY',
@@ -13,14 +13,14 @@ export const deleteCategory = (categoryId: number): Action<CategoryActionType, a
     };
 }
 
-export const addCategory = (category: any): Action<CategoryActionType, any> => {
+export const addCategory = (category: Category): Action<CategoryActionType, any> => {
     return {
         type: CategoryActionType.ADD_CATEGORY,
         payload: category
     };
 }
 
-export const updateCategory = (category: any): Action<CategoryActionType, any> => {
+export const updateCategory = (category: Category): Action<CategoryActionType, any> => {
     return {
         type: CategoryActionType.UPDATE_CATEGORY,
         payload: category

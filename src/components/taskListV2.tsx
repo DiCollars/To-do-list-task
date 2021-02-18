@@ -3,43 +3,25 @@ import DB, { addItem, getItems, updateItem, deleteItem, getCategories } from '..
 import './component.css';
 import { FaFolder } from 'react-icons/fa';
 import { MdModeEdit, MdDelete } from 'react-icons/md';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Modal from '../modalWindow/confirmModal';
 import '../modalWindow/modal.css';
 import { deleteTask } from '../actions/taskActionV2';
+import { State, Task } from '../actions/interfaces';
 
-// function getNameById(array: any, id: any) {
-//     console.log(id);
-//     if(array !== null)
-//     {
-//         var found = array.filter(function (item: any) { return item.id == id; });
-//         console.log(id);
-//         return found[0].name;
-//     }
-//     else {
-//         return '';
-//     }
-// }
+import { addTaskDB } from '../asyncAction/taskActionAsync';
 
 export default function TaskList() {
     const dispatch = useDispatch();
 
-    const [showModal, setShowModal] = useState(false);
-    const [currentTask, setCurrentTask] = useState(0);
-
-    const db = DB();
-    const [list, setList]: any = useState(null);
-
-    let items = getItems(db);
-
-    useEffect(() => {
-        items = getItems(db);
-        items.then(result => { setList(result) });
-    }, [list]);
+    const [showDeleteModal, setShowDeleteModal] = useState<boolean>(false);
+    const [currentTask, setCurrentTask] = useState<number|undefined>(0);
+    
+    let allTasks = useSelector((state: State) => state.TasksV2);
 
     return (
         <div key='TASK_LIST'>
-            {showModal &&
+            {/* {showModal &&
                 <Modal
                     text={'Удаление задачи'}
                     onConfirmButtonClick={() => {
@@ -51,17 +33,20 @@ export default function TaskList() {
                     onCloseButtonStyle={'modal-confirm-no'}
                     onOpenButtonStyle={'modal-confirm-yes'}
                     textStyle={'modal-confirm-text'}
-                />}
+                />} */}
+
+            <button onClick={() => {dispatch(addTaskDB({name: "Tест", description: "Тест", categoryId: "96"}))}}>B</button>
+
             {
-                list && list.map((task: any) =>
-                    <div>
+                allTasks.map((task: Task) =>
+                    <div key={task.id}>
                         <div>
                             {task.name}
-                            
-                            {task.categoryId && <FaFolder className='logo-img-path' />} 
+
+                            {task.categoryId && <FaFolder className='logo-img-path' />}
                             {task.categoryId}
                             <MdModeEdit className='logo-img-path' />
-                            <MdDelete className='logo-img-path' onClick={() => { setShowModal(true); setCurrentTask(task.id); }} />
+                            <MdDelete className='logo-img-path' onClick={() => { setShowDeleteModal(true); setCurrentTask(task.id); }} />
                         </div>
 
                         <div>

@@ -1,18 +1,8 @@
 import React from 'react';
-import '../modalWindow/modal.css'
+import '../modalWindow/modal.css';
+import { ConfirmModalProps } from '../actions/interfaces';
 
-interface ModalProps {
-    /** summary */
-    textStyle: string;
-    text: string;
-    callBack: any;
-    onOpenButtonStyle: string;
-    onConfirmButtonClick: any;
-    onCloseButtonStyle: string;
-    onCloseButtonClick: any;
-}
-
-function Modal(props: ModalProps) {
+function Modal(props: ConfirmModalProps) {
     return (
         <div className='modal-overlay'>
             <div className='modal'>

@@ -31,7 +31,7 @@ const todoDB = () => {
 
 //*********************************[To add 1 item]*********************************//
 export const addItem = (db: any, data: any) => {
-    db.items.bulkAdd([data]);
+    return db.items.bulkAdd([data]);
 }
 
 //*********************************[To add 1 category]*********************************//
