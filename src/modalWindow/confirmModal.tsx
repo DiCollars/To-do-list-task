@@ -1,19 +1,22 @@
-import React from 'react';
 import '../modalWindow/modal.css';
+import { ImCross } from 'react-icons/im';
 import { ConfirmModalProps } from '../actions/interfaces';
 
 function Modal(props: ConfirmModalProps) {
     return (
         <div className='modal-overlay'>
             <div className='modal'>
-                <span className={props.textStyle}>{props.text}</span>
-                <div>{props.callBack}</div>
-                <button className={props.onOpenButtonStyle} onClick={props.onConfirmButtonClick}>
-                    Да
-                </button>
-                <button className={props.onCloseButtonStyle} onClick={props.onCloseButtonClick}>
-                    Нет
-                </button>
+                <ImCross className='logo-img-path cross-size' onClick={props.onCloseButtonClick} />
+                <div className={props.textStyle}>{props.text}</div>
+                <div className='subtext-style'>{props.subText}</div>
+                <div className='paddingTop'>
+                    <button className={props.onCloseButtonStyle} onClick={props.onCloseButtonClick}>
+                        Нет
+                    </button>
+                    <button className={props.onOpenButtonStyle} onClick={props.onConfirmButtonClick}>
+                        Да
+                    </button>
+                </div>
             </div>
         </div>);
 }

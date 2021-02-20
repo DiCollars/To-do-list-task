@@ -1,21 +1,37 @@
-import DB,{ addItem, getItems } from '../database/db';
-import { addTask, getAllTasks } from '../actions/taskActionV2';
+import DB, { addTask, getTasks, deleteTask, updateTask } from '../database/db';
+import { addTaskAction, getAllTasksAction, deleteTaskAction, updateCategory } from '../actions/taskAction';
 import { Task } from '../actions/interfaces';
 
 const db = DB();
 
-export const addTaskDB = (newItem: Task) => {
+export const addTaskAsync = (newItem: Task) => {
     return function (dispatch: any) {
-        addItem(db, newItem)
-        .then((resolve:Task) =>  dispatch(addTask(newItem)))
-        .catch(console.error);
+        addTask(db, newItem)
+            .then((newItemId: number) => dispatch(addTaskAction({...newItem, id: newItemId})))
+            .catch(console.error);
     }
 }
 
 export const getAllTasksAsync = () => {
     return function (dispatch: any) {
-        getItems(db)
-        .then((tasks:Array<Task>) =>  dispatch(getAllTasks(tasks)))
-        .catch(console.error);
+        getTasks(db)
+            .then((tasks: Array<Task>) => dispatch(getAllTasksAction(tasks)))
+            .catch(console.error);
+    }
+}
+
+export const updateTaskAsync = (taskId: number, fixedTask: Task) => {
+    return function (dispatch: any) {
+        updateTask(db, taskId, fixedTask)
+            .then(() => dispatch(updateCategory({ ...fixedTask, id: taskId })))
+            .catch(console.error);
+    }
+}
+
+export const deleteTaskAsync = (taskId: number) => {
+    return function (dispatch: any) {
+        deleteTask(db, taskId)
+            .then(() => dispatch(deleteTaskAction(taskId)))
+            .catch(console.error);
     }
 }

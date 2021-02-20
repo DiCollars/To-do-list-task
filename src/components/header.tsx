@@ -1,45 +1,60 @@
 import React, { useState } from 'react';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useLocation } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-//import Modal from '../modalWindow/muteModal';
 import '../components/component.css';
 import AddCategoryModal from '../modalWindow/cuCategoryModal';
 import AddTaskModal from '../modalWindow/cuTaskModal';
-import { addCategory } from '../actions/categoryActionV2';
-import { addTask } from '../actions/taskActionV2';
 import { Task, Category } from '../actions/interfaces';
+import { addTaskAsync } from '../asyncAction/taskActionAsync';
+import { addCategoryAsync } from '../asyncAction/categoryActionAsync';
 
 export default function Header() {
   const [showModalCategory, setShowModalCategory] = useState<boolean>(false);
   const [showModalTask, setShowModalTask] = useState<boolean>(false);
 
-  const [mode, setMode] = useState<string|null>((() => {
-    const arTmp = window.location.pathname.split("/").filter(e => e);
-    return arTmp.length ? arTmp[0] : null;
-  })());
+  console.log('Render header');
 
+  const location = useLocation();
+  console.log(location.pathname);
   const dispatch = useDispatch();
+
+  function navlinkCategoryColorToggle(path: string) {
+    if(path === '/categories') {
+      return 'text-white';
+    }
+    else {
+      return 'text-blue';
+    }
+  }
+
+  function navlinkTaskColorToggle(path: string) {
+    if(path === '/tasks') {
+      return 'text-white';
+    }
+    else {
+      return 'text-blue';
+    }
+  }
 
   return (
     <div>
-      <div className='component-header'>
-        <div>
-          <h3 className={'text-white'}>ToDo List</h3>
-        </div>
-        <div>
-          <NavLink onClick={() => setMode('categories')} to='/categories'> Категории </NavLink>
-          | <NavLink onClick={() => setMode('tasks')} to='/tasks'> Задания </NavLink>
-        </div>
-        <div>
-          {mode === 'categories' && <button onClick={() => setShowModalCategory(true)}>Добавить категорию</button>}
-          {mode === 'tasks' && <button onClick={() => setShowModalTask(true)}>Добавить задачу</button>}
-        </div>
+      <div className='component-header blue-color'>
+          <span className='text-white todo-list-size'>ToDo List</span>
+          <NavLink className={`${navlinkTaskColorToggle(location.pathname)} task-navlink`} to='/tasks'> Задачи </NavLink>
+          <span className={'text-white task-navlink'}>&nbsp;|&nbsp;</span>
+          <NavLink className={`${navlinkCategoryColorToggle(location.pathname)} task-navlink`} to='/categories'> Категории </NavLink>
+          {location.pathname === '/categories' && <span className='text-white add-end' onClick={() => setShowModalCategory(true)}>Добавить категорию</span>}
+          {location.pathname === '/tasks' && <span className='text-white add-end' onClick={() => setShowModalTask(true)}>Добавить задачу</span>}
       </div>
       {showModalCategory &&
         <AddCategoryModal
-          handleSubmit={(category: Category) => {dispatch(addCategory(category))}}
+          handleSubmit={(category: Category) => {
+            console.log(category);
+            dispatch(addCategoryAsync(category)); 
+            setShowModalCategory(false);
+          }}
           onCloseButtonClick={() => setShowModalCategory(false)}
-          onConfirmButtonClick={() => { }}
+          onConfirmButtonClick={() => {}}
           headText={'Создание категории'}
           submitButtonText={'Создать'}
           placeholderDescription={''}
@@ -47,14 +62,18 @@ export default function Header() {
         />}
 
       {showModalTask &&
-        <AddTaskModal 
-        handleSubmit={(task: Task) => { dispatch(addTask(task))}}
-        onCloseButtonClick={() => setShowModalTask(false)}
-        onConfirmButtonClick={() => { }}
-        headText={'Создание задания'}
-        submitButtonText={'Создать'}
-        placeholderDescription={''}
-        placeholderName={''}
+        <AddTaskModal
+          defaultCategoryId={'0'}
+          handleSubmit={(task: Task) => {
+            dispatch(addTaskAsync(task));
+            setShowModalTask(false);
+          }}
+          onCloseButtonClick={() => setShowModalTask(false)}
+          onConfirmButtonClick={() => {}}
+          headText={'Создание задания'}
+          submitButtonText={'Создать'}
+          defaultDescription={''}
+          defaultName={''}
         />}
 
     </div>

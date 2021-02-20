@@ -5,29 +5,30 @@ export interface Action<T, P> {
 
 export interface Task {
     name: string;
-    description?: string;
-    categoryId?: string;
-    id?: number | undefined;
+    description: string;
+    categoryId: string;
+    id: number;
 }
 
 export interface Category {
     name: string;
-    description?: string;
-    id?: number | undefined;
+    description: string;
+    id: number;
 }
 
 export interface State {
-    TasksV2: Array<Task>;
+    Tasks: Array<Task>;
+    Categories: Array<Category>;
 }
 
-export interface _Modal<T> {
+export interface Modal<T> {
     showModal: T;
 }
 
 export interface ConfirmModalProps { //Разобраться какой тип у колбеков
     textStyle: string;
     text: string;
-    callBack: any;
+    subText: string;
     onOpenButtonStyle: string;
     onConfirmButtonClick: any;
     onCloseButtonStyle: string;
@@ -41,7 +42,7 @@ export interface CUCategoryModalProps { //Разобраться какой ти
     submitButtonText: string;
     handleSubmit: any,
     placeholderName: string,
-    placeholderDescription: string
+    placeholderDescription: string | undefined
 }
 
 export interface CUTaskModalProps { //Разобраться какой тип у колбеков
@@ -50,6 +51,7 @@ export interface CUTaskModalProps { //Разобраться какой тип �
     headText: string;
     submitButtonText: string;
     handleSubmit: any,
-    placeholderName: string,
-    placeholderDescription: string
+    defaultName: string,
+    defaultDescription: string | undefined,
+    defaultCategoryId: string | undefined
 }

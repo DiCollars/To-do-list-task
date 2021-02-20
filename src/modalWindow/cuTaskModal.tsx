@@ -1,32 +1,28 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useSelector } from 'react-redux';
 import '../modalWindow/modal.css';
 import { Formik, Field, Form } from "formik";
-import DB, { getCategories } from '../database/db';
-import { CUTaskModalProps, Category } from '../actions/interfaces';
+import { CUTaskModalProps, Category, State } from '../actions/interfaces';
+import { ImCross } from 'react-icons/im';
 
 function CUTaskModal(props: CUTaskModalProps) {
-    const db = DB();
-    let items = getCategories(db);
-    const [list, setList] = useState<Array<Category>>([]);
-
-    useEffect(() => {
-        items.then(result => { setList(result) });
-    }, []);
+    const list:Array<Category> = useSelector((state: State) => state.Categories);
 
     return (
         <div className='modal-overlay'>
-            <div className='modal'>
-                <span>{props.headText}</span>
+            <div className='modal-create-update'>
+            <ImCross className='logo-img-path cross-size paddingRightTop ' onClick={props.onCloseButtonClick} />
+                <div className='head-text'>{props.headText}</div>
                 <Formik
-                    initialValues={{ name: props.placeholderName, description: props.placeholderDescription }}
+                    initialValues={{ name: props.defaultName, description: props.defaultDescription, categoryId: props.defaultCategoryId }}
                     onSubmit={(values) => {
                         props.handleSubmit(values);
                     }}
                 >
-                    <Form>
+                    <Form className='form-padding'>
                         <div>
-                            <Field name='name' type='text' placeholder='Введите имя задания' />
-                            <Field name="categoryId" as="select">
+                            <Field name='name' type='text' maxlength='255' placeholder='Введите имя задания' className='field-name'/>
+                            <Field name="categoryId" as="select" className='field-category-task'>
                                 <option value='0' >Выберите категорию</option>
                                 {list?.map((category: Category) => 
                                 <option key={category.id} value={category.id} >{category.name}</option>
@@ -34,10 +30,10 @@ function CUTaskModal(props: CUTaskModalProps) {
                             </Field>
                         </div>
 
-                        <Field name='description' type='text' placeholder='Введите описание задания' />
+                        <Field className='field-desc-task' name='description' type='text' maxlength='1536' placeholder='Введите описание задания' />
                         <div>
-                            <button type='submit'>{props.submitButtonText}</button>
-                            <button onClick={props.onCloseButtonClick}>Закрыть</button>
+                            <button className='create-task-button' type='submit'>{props.submitButtonText}</button>
+                            <button className='close-task-button' onClick={props.onCloseButtonClick}>Закрыть</button>
                         </div>
                     </Form>
                 </Formik>
