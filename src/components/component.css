@@ -55,9 +55,6 @@
     right: 29.87px;
 }
 
-.list-size-centre {
-} 
-
 .list-item-size {
     width: 1000px;
     height: 80px;
@@ -138,3 +135,9 @@
     float: right;
     position: inherit;
 }
+
+.list-item-size:hover {
+    background-color: rgba(37, 127, 234, 0.2);
+}
+
+

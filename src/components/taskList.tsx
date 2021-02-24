@@ -52,7 +52,7 @@ export default function TaskList() {
     }
 
     return (
-        <div key='TASK_LIST' className='list-size-centre'>
+        <div key='TASK_LIST'>
             {showDeleteModal &&
                 <ConfirmModal
                     text={'Удаление задачи'}
@@ -107,7 +107,7 @@ export default function TaskList() {
                                 }} />
                             </div>
                         </div>
-                        <hr className='hr-style' />
+                        <hr className='hr-style' style={{marginBottom: '-3px'}}/>
                     </div>)
             }
         </div>)

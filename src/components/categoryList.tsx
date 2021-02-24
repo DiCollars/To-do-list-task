@@ -72,7 +72,7 @@ export default function CategoryList() {
                                 }} />
                             </div>
                         </div>
-                        <hr className='hr-style' />
+                        <hr className='hr-style' style={{marginBottom: '-3px'}}/>
                     </div>)
             }
         </div>)

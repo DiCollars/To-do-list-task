@@ -131,56 +131,6 @@
   padding-left: 24px;
 }
 
-.field-name {
-  width: 364px;
-  height: 46px;
-  background: #DBE2EF;
-  border: 2px solid #3F72AF;
-  box-sizing: border-box;
-  border-radius: 4px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 46px;
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.field-category-task {
-  width: 364px;
-  height: 46px;
-  position: inherit;
-  float:right;
-  margin-right: 24px;
-  left: 24px;
-  background: #DBE2EF;
-  border: 2px solid #3F72AF;
-  box-sizing: border-box;
-  border-radius: 4px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 46px;
-  color: rgba(0, 0, 0, 0.5);
-}
-
-.field-desc-task {
-  width: 752px;
-  height: 72px;
-  background: #DBE2EF;
-  border: 2px solid #3F72AF;
-  box-sizing: border-box;
-  border-radius: 4px;
-  margin-top: 34px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 46px;
-  color: rgba(0, 0, 0, 0.5);
-}
-
 .create-task-button {
   width: 200px;
   height: 46px;
@@ -219,44 +169,6 @@ font-style: normal;
 font-weight: 600;
 font-size: 20px;
 line-height: 46px;
-}
-
-.field-name-category {
-  width: 752px;
-  height: 46px;
-  background: #DBE2EF;
-  border: 2px solid #3F72AF;
-  box-sizing: border-box;
-  border-radius: 4px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 46px;
-  display: flex;
-  align-items: center;
-  color: rgba(0, 0, 0, 0.5);
-  margin-bottom: 34px;
-  margin-left: 24px;
-  margin-top: 42px;
-}
-
-.field-desc-category {
-  width: 752px;
-  height: 72px;
-  background: #DBE2EF;
-  border: 2px solid #3F72AF;
-  box-sizing: border-box;
-  border-radius: 4px;
-  margin-left: 24px;
-  font-family: Roboto;
-  font-style: normal;
-  font-weight: normal;
-  font-size: 20px;
-  line-height: 46px;
-  display: flex;
-  align-items: center;
-  color: rgba(0, 0, 0, 0.5);
 }
 
 .create-category-button {
@@ -298,4 +210,99 @@ font-style: normal;
 font-weight: 600;
 font-size: 20px;
 line-height: 46px;
+}
+
+.font-color-gray {
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.form-group>label{
+  color: #3F72AF;
+  position:absolute;
+  top:-11px;
+  left:9px;
+  background-color:#DBE2EF;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 18px;
+  line-height: 20px;
+}
+
+.form-group{
+  border:2px solid;
+  position:relative;
+  border-radius: 4px; 
+  border: 2px solid #3F72AF;
+}
+
+.field-name {
+  border:none;
+  width: 364px;
+  height: 46px;
+  background: #DBE2EF;
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+}
+
+.field-category-task {
+  border:none;
+  -webkit-appearance: none;
+  width: 364px;
+  height: 46px;
+  box-sizing: border-box;
+  float:right;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+  background: url(/src/icons/326521-16.png) no-repeat right #DBE2EF;
+  background-position-x: 332px;
+}
+
+.field-desc-task {
+  border:none;
+  width: 748px;
+  height: 72px;
+  background: #DBE2EF;
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+}
+
+.field-name-category {
+  border:none;
+  width: 748px;
+  height: 46px;
+  background: #DBE2EF;
+  box-sizing: border-box;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
+  display: flex;
+  align-items: center;
+}
+
+.field-desc-category {
+  border:none;
+  width: 748px;
+  height: 72px;
+  background: #DBE2EF;
+  box-sizing: border-box;
+  border-radius: 4px;
+  font-family: Roboto;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 20px;
+  line-height: 46px;
 }
