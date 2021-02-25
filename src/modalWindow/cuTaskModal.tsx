@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import '../modalWindow/modal.css';
 import { Formik, Field, Form } from "formik";
-import { CUTaskModalProps, Category, State } from '../actions/interfaces';
+import { CUTaskModalProps, Category, State } from '../interfaces';
 import { ImCross } from 'react-icons/im';
 
 function CUTaskModal(props: CUTaskModalProps) {

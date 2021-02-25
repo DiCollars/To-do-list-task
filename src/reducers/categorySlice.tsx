@@ -1,20 +1,26 @@
-import { Action, Category } from '../actions/interfaces';
-import { CategoryActionType } from '../actions/categoryAction';
+import { createSlice } from "@reduxjs/toolkit";
 
-export default function CategoryReducer(state: Array<Category> = [], action: Action<CategoryActionType, any>): Array<Category> {
+const categorySlice = createSlice({
+    name: 'category_slice',
 
-    switch (action.type) {
-        case CategoryActionType.ADD_CATEGORY:
+    initialState: [{
+        name: '',
+        description: '',
+        id: 0
+    }],
+
+    reducers: {
+        addCategoryAction(state, action) {
             const categories = [...state]; 
             categories.push(action.payload);
-
             return categories;
+        },
 
-        case CategoryActionType.GET_ALL_CATEGORY:
-
+        getAllCategoryAction(state, action) {
             return action.payload;
-
-        case CategoryActionType.UPDATE_CATEGORY:
+        },
+        
+        updateCategoryAction(state, action) {
             const categoriesUpdate = [...state];
 
             const newcategoriesUpdate = categoriesUpdate.map(category => {
@@ -27,14 +33,15 @@ export default function CategoryReducer(state: Array<Category> = [], action: Act
             });
 
             return newcategoriesUpdate;
+        },
 
-        case CategoryActionType.DELETE_CATEGORY:
+        deleteCategoryAction(state, action) {
             const newСategories = [...state].filter(category => category.id !== action.payload);
 
             return newСategories;
-            
-        default:
-
-            return state;
+        }
     }
-}
+});
+
+export const categoryReducer = categorySlice.reducer;
+export const {addCategoryAction, getAllCategoryAction, updateCategoryAction, deleteCategoryAction} = categorySlice.actions;

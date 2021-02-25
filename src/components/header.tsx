@@ -5,7 +5,7 @@ import '../components/component.css';
 import '../modalWindow/modal.css';
 import AddCategoryModal from '../modalWindow/cuCategoryModal';
 import AddTaskModal from '../modalWindow/cuTaskModal';
-import { Task, Category } from '../actions/interfaces';
+import { Task, Category } from '../interfaces';
 import { addTaskAsync } from '../asyncAction/taskActionAsync';
 import { addCategoryAsync } from '../asyncAction/categoryActionAsync';
 

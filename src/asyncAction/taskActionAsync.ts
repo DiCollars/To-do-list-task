@@ -1,6 +1,6 @@
 import DB, { addTask, getTasks, deleteTask, updateTask } from '../database/db';
-import { addTaskAction, getAllTasksAction, deleteTaskAction, updateCategory } from '../actions/taskAction';
-import { Task } from '../actions/interfaces';
+import { addTaskAction, getAllTasksAction, deleteTaskAction, updateCategory } from '../reducers/taskSlice';
+import { Task } from '../interfaces';
 
 const db = DB();
 

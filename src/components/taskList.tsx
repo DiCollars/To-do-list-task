@@ -5,7 +5,7 @@ import { MdModeEdit, MdDelete } from 'react-icons/md';
 import { useDispatch, useSelector } from 'react-redux';
 import ConfirmModal from '../modalWindow/confirmModal';
 import '../modalWindow/modal.css';
-import { Category, State, Task } from '../actions/interfaces';
+import { Category, State, Task } from '../interfaces';
 import { deleteTaskAsync, updateTaskAsync } from '../asyncAction/taskActionAsync';
 import UpdateModal from '../modalWindow/cuTaskModal';
 

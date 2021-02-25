@@ -1,6 +1,6 @@
 import '../modalWindow/modal.css';
 import { ImCross } from 'react-icons/im';
-import { ConfirmModalProps } from '../actions/interfaces';
+import { ConfirmModalProps } from '../interfaces';
 
 function Modal(props: ConfirmModalProps) {
     return (

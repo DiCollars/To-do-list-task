@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import ConfirmModal from '../modalWindow/confirmModal';
 import UpdateModal from '../modalWindow/cuCategoryModal';
 import '../modalWindow/modal.css';
-import { Category, State } from '../actions/interfaces';
+import { Category, State } from '../interfaces';
 import { deleteCategoryAsync, updateCategoryAsync } from '../asyncAction/categoryActionAsync';
 
 export default function CategoryList() {

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../modalWindow/modal.css';
 import { Formik, Field, Form } from "formik";
-import { CUCategoryModalProps } from '../actions/interfaces';
+import { CUCategoryModalProps } from '../interfaces';
 import { ImCross } from 'react-icons/im';
 
 function CUCategoryModal(props: CUCategoryModalProps) {
